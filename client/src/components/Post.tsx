@@ -1,21 +1,22 @@
 import PostDescription from "../Atoms/PostDescription";
 import PostFooter from "../Molecule/PostFooter";
 import PostHeader from "../Molecule/PostHeader";
+import { FC } from "react";
+import { UserType } from "../interfaces/modelTypes";
 
-const Post = () => {
+interface PostProps {
+  description: string;
+  user: UserType;
+  likes: [string];
+}
+
+const Post: FC<PostProps> = ({ description, user, likes }) => {
   return (
     <section className="flex flex-col justify-center items-center py-2">
       <div className="w-[100%] flex flex-col gap-6 bg-slate-50 shadow-md px-6 py-8 rounded-lg">
-        <PostHeader username="Shemilkumar" />
-        <PostDescription
-          description="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Atque
-          exercitationem, facere accusantium nihil nulla quidem blanditiis
-          aperiam. Perferendis iusto omnis aut aliquam repellat, perspiciatis,
-          voluptatibus nesciunt repudiandae sunt temporibus quo, commodi saepe
-          hic maiores minus suscipit cumque amet vel consectetur praesentium
-          dolor non doloribus harum? Aspernatur ipsa dolore soluta doloremque?"
-        />
-        <PostFooter likes={2} comments={2} />
+        <PostHeader username={user.name} />
+        <PostDescription description={description} />
+        <PostFooter likes={likes.length} comments={2} />
       </div>
     </section>
   );

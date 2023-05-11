@@ -1,20 +1,14 @@
-import "./App.css";
-import Layout from "./components/Layout";
-import Navbar from "./components/Navbar";
-import Post from "./components/Post";
-import AllPosts from "./components/AllPosts";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Home from "./pages/Home";
 
 function App() {
   return (
-    <>
-      <Layout>
-        <Navbar />
-        <AllPosts />
-        <Post />
-        <Post />
-        <Post />
-      </Layout>
-    </>
+    <Router>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/:id" element={<Home />} />
+      </Routes>
+    </Router>
   );
 }
 

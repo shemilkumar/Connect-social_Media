@@ -1,12 +1,27 @@
-import { FC } from "react";
 import useFetchAllPosts from "../hooks/useFetchAllPost";
+import { PostModel } from "../interfaces/modelTypes";
+import Post from "./Post";
 
-interface AllPostsProps {}
+const AllPosts = () => {
+  const { data, isLoading } = useFetchAllPosts();
+  console.log(data);
 
-const AllPosts: FC<AllPostsProps> = ({}) => {
-  const { data, isLoading, error } = useFetchAllPosts();
-
-  return <div>{JSON.stringify(data)}</div>;
+  return (
+    <>
+      {isLoading
+        ? "Loading"
+        : data.doc.map((post: PostModel) => {
+            return (
+              <Post
+                key={post._id}
+                description={post.description}
+                user={post.user}
+                likes={post.likes}
+              />
+            );
+          })}
+    </>
+  );
 };
 
 export default AllPosts;
