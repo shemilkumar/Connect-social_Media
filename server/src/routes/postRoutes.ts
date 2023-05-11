@@ -1,8 +1,11 @@
 import { Router } from "express";
 import * as postController from "../controllers/postController";
 import { protect } from "../controllers/authController";
+import commentRouter from "./commentRoutes";
 
 const router = Router();
+
+router.use("/:postId/comments", commentRouter);
 
 router
   .route("/")

@@ -29,6 +29,13 @@ export interface PostModel extends Document {
   postedAt: Date;
 }
 
+export interface CommentModel extends Document {
+  post: mongoose.Schema.Types.ObjectId;
+  user: mongoose.Schema.Types.ObjectId;
+  comment: string;
+  commentedAt: Date;
+}
+
 export interface AuthenticatedRequest extends Request {
   user?: UserModel;
 }

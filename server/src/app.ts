@@ -1,8 +1,10 @@
 import express, { json } from "express";
+import { NextFunction, Request, Response } from "express";
+
 import postRouter from "./routes/postRoutes";
 import userRouter from "./routes/userRoutes";
+import commentRouter from "./routes/commentRoutes";
 import AppError from "./util/AppError";
-import { NextFunction, Request, Response } from "express";
 import { globalErrorController } from "./controllers/errorController";
 
 const app = express();
@@ -11,6 +13,7 @@ app.use(json());
 
 app.use("/api/v1/posts", postRouter);
 app.use("/api/v1/users", userRouter);
+app.use("/api/v1/comments", commentRouter);
 
 app.all("*", (req: Request, res: Response, next: NextFunction) => {
   next(

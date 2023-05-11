@@ -4,7 +4,8 @@ import { PostModel } from "../types/modelTypes";
 const postSchema = new mongoose.Schema<PostModel>({
   user: {
     type: mongoose.Schema.Types.ObjectId,
-    // required: [true, "A Post belongs to a user"],
+    ref: "User",
+    required: [true, "A Post belongs to a user"],
   },
   description: {
     type: String,
