@@ -12,15 +12,15 @@ function ThreeDotIcon() {
       // xml:space="preserve"
       transform="matrix(1, 0, 0, 1, 0, 0)rotate(90)"
       stroke="#cccccc"
-      stroke-width="0.00032055"
+      strokeWidth="0.00032055"
     >
-      <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+      <g id="SVGRepo_bgCarrier" strokeWidth="0"></g>
       <g
         id="SVGRepo_tracerCarrier"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeLinecap="round"
+        strokeLinejoin="round"
         stroke="#CCCCCC"
-        stroke-width="0.70521"
+        strokeWidth="0.70521"
       ></g>
       <g id="SVGRepo_iconCarrier">
         {" "}

@@ -1,11 +1,11 @@
 import PostDescription from "../Atoms/PostDescription";
-import PostFooter from "../Molecules/PostFooter";
-import PostHeader from "../Molecules/PostHeader";
+import PostFooter from "../Molecule/PostFooter";
+import PostHeader from "../Molecule/PostHeader";
 
 const Post = () => {
   return (
     <section className="flex flex-col justify-center items-center py-2">
-      <div className="w-[60%] flex flex-col gap-6 bg-slate-50 shadow-md px-6 py-8 rounded-lg">
+      <div className="w-[100%] flex flex-col gap-6 bg-slate-50 shadow-md px-6 py-8 rounded-lg">
         <PostHeader username="Shemilkumar" />
         <PostDescription
           description="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Atque
