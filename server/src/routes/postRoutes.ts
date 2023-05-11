@@ -1,16 +1,17 @@
 import { Router } from "express";
-import {
-  createPost,
-  deletePost,
-  getAllPost,
-  getPost,
-} from "../controllers/postController";
+import * as postController from "../controllers/postController";
 import { protect } from "../controllers/authController";
 
 const router = Router();
 
-router.route("/").get(getAllPost).post(protect, createPost);
+router
+  .route("/")
+  .get(postController.getAllPost)
+  .post(protect, postController.createPost);
 
-router.route("/:id").get(getPost).delete(protect, deletePost);
+router
+  .route("/:id")
+  .get(postController.getPost)
+  .delete(protect, postController.deletePost);
 
 export default router;
