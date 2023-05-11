@@ -1,4 +1,4 @@
-import mongoose from "mongoose";
+import mongoose, { Query } from "mongoose";
 import { PostModel } from "../types/modelTypes";
 
 const postSchema = new mongoose.Schema<PostModel>({
@@ -23,6 +23,14 @@ const postSchema = new mongoose.Schema<PostModel>({
     type: Date,
     default: Date.now(),
   },
+});
+
+postSchema.pre(/^find/, function (this: Query<PostModel[], PostModel>, next) {
+  this.populate({
+    path: "user",
+    select: "name photo",
+  });
+  next();
 });
 
 const Post = mongoose.model<PostModel>("Post", postSchema);

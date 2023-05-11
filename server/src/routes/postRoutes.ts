@@ -10,7 +10,7 @@ router.use("/:postId/comments", commentRouter);
 router
   .route("/")
   .get(postController.getAllPost)
-  .post(protect, postController.createPost);
+  .post(protect, postController.setUser, postController.createPost);
 
 router
   .route("/:id")

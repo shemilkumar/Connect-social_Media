@@ -1,5 +1,8 @@
 import express, { json } from "express";
 import { NextFunction, Request, Response } from "express";
+import cors from "cors";
+import helmet from "helmet";
+import compression from "compression";
 
 import postRouter from "./routes/postRoutes";
 import userRouter from "./routes/userRoutes";
@@ -8,6 +11,18 @@ import AppError from "./util/AppError";
 import { globalErrorController } from "./controllers/errorController";
 
 const app = express();
+
+app.use(cors({}));
+app.options("*", cors());
+
+app.use(
+  helmet({
+    crossOriginEmbedderPolicy: false,
+    crossOriginResourcePolicy: false,
+  })
+);
+
+app.use(compression());
 
 app.use(json());
 

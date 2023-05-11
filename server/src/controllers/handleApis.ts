@@ -1,3 +1,4 @@
+import { AuthenticatedRequest } from "../types/modelTypes";
 import { NextFunction, Request, Response } from "express";
 import { Model } from "mongoose";
 import catchAsync from "../util/catchAsync";
@@ -29,15 +30,17 @@ export const getOne = <T>(Model: Model<T>) =>
   });
 
 export const createOne = <T>(Model: Model<T>) =>
-  catchAsync(async (req: Request, res: Response, next: NextFunction) => {
-    //
-    const doc = await Model.create(req.body);
+  catchAsync(
+    async (req: AuthenticatedRequest, res: Response, next: NextFunction) => {
+      //
+      const doc = await Model.create(req.body);
 
-    res.status(200).json({
-      status: "success",
-      doc,
-    });
-  });
+      res.status(200).json({
+        status: "success",
+        doc,
+      });
+    }
+  );
 
 export const deleteOne = <T>(Model: Model<T>) =>
   catchAsync(
