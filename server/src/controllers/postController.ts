@@ -1,44 +1,80 @@
 import { NextFunction, Request, Response } from "express";
 import Post from "../models/postModel";
+import catchAsync from "../util/catchAsync";
+import AppError from "../util/AppError";
 
-export const getAllPost = async (
-  req: Request,
-  res: Response,
-  next: NextFunction
-) => {
-  try {
-    // const newPost = await Post.create(req.body);
+export const getAllPost = catchAsync(
+  async (req: Request, res: Response, next: NextFunction) => {
+    //
     const posts = await Post.find();
 
     res.status(200).json({
-      status: "Success",
+      status: "success",
       posts,
     });
-  } catch (error) {
-    res.status(401).json({
-      status: "fail",
-    });
   }
-};
+);
 
-export const createPost = async (
-  req: Request,
-  res: Response,
-  next: NextFunction
-) => {
-  try {
-    console.log(req);
-
+export const createPost = catchAsync(
+  async (req: Request, res: Response, next: NextFunction) => {
+    //
     const newPost = await Post.create(req.body);
 
     res.status(200).json({
-      status: "Success",
+      status: "success",
       post: newPost,
     });
-  } catch (error) {
-    res.status(401).json({
-      status: "fail",
-      error,
+  }
+);
+
+export const getPost = catchAsync(
+  async (req: Request, res: Response, next: NextFunction) => {
+    //
+    const postId = req.params.id;
+
+    const post = await Post.findById(postId);
+    if (!post) return next(new AppError("No document found with that ID", 404));
+
+    res.status(200).json({
+      status: "success",
+      post,
     });
   }
-};
+);
+
+export const deletePost = catchAsync(
+  async (req: Request, res: Response, next: NextFunction) => {
+    //
+    const postId = req.params.id;
+
+    const doc = await Post.findByIdAndDelete(postId);
+
+    if (!doc) return next(new AppError("No document found with that ID", 404));
+
+    res.status(204).json({
+      status: "success",
+    });
+  }
+);
+
+// export const createPost = async (
+//   req: Request,
+//   res: Response,
+//   next: NextFunction
+// ) => {
+//   try {
+//     console.log(req);
+
+//     const newPost = await Post.create(req.body);
+
+//     res.status(200).json({
+//       status: "Success",
+//       post: newPost,
+//     });
+//   } catch (error) {
+//     res.status(401).json({
+//       status: "fail",
+//       error,
+//     });
+//   }
+// };
