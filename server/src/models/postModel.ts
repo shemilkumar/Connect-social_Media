@@ -17,9 +17,10 @@ const postSchema = new mongoose.Schema<PostModel>(
       required: [false],
     },
     likes: {
-      type: [mongoose.Schema.Types.ObjectId],
-      default: [],
+      type: Number,
+      default: 1,
     },
+    likedBy: [{ type: mongoose.Schema.Types.ObjectId, ref: "User" }],
     postedAt: {
       type: Date,
       default: Date.now(),

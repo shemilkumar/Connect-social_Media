@@ -17,4 +17,6 @@ router
   .get(postController.getPost)
   .delete(protect, postController.deletePost);
 
+router.route("/:postId/like").post(protect, postController.likePost);
+
 export default router;
