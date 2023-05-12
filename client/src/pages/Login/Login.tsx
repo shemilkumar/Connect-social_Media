@@ -3,8 +3,6 @@ import { useNavigate } from "react-router-dom";
 import { LOGIN_URL } from "../../constants/urls";
 import usePost from "../../hooks/usePost";
 import LoginDesign from "./LoginDesign";
-import { setUserData } from "../../Redux/Slicers/userSlicer";
-import { useDispatch } from "react-redux";
 import { DataFromAuthentication } from "../../interfaces/APIResultTypes";
 
 const Login = () => {
@@ -13,7 +11,6 @@ const Login = () => {
 
   const mutation = usePost(LOGIN_URL);
   const navigate = useNavigate();
-  const dispatch = useDispatch();
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     switch (e.target.name) {
@@ -53,11 +50,10 @@ const Login = () => {
         localStorage.setItem("token", data.token);
         localStorage.setItem("userID", data.user._id);
         localStorage.setItem("userName", data.user.name);
-        dispatch(setUserData({ name: data.user.name, email: data.user.email }));
         clearInputs();
       }
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    } catch (error:any) {
+    } catch (error: any) {
       if (error?.response) alert(error.response.data.message);
       else alert(error);
     }

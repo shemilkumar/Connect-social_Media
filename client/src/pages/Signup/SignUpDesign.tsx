@@ -4,7 +4,6 @@ import Button from "../../Atoms/Button";
 import Layout from "../../components/Layout";
 import TermsNConditions from "../../Atoms/TermsNConditions";
 import SignUpLoginNavigate from "../../Atoms/SignUpLoginNavigate";
-import Navbar from "../../components/Navbar";
 
 interface SignUpDesignProps {
   name: string;
@@ -25,7 +24,6 @@ const SignUpDesign: FC<SignUpDesignProps> = ({
 }) => {
   return (
     <Layout>
-      \{" "}
       <div className="flex flex-col min-h-screen">
         <div className="container flex flex-col items-center justify-center flex-1 max-w-sm px-2 mx-auto">
           <div className="w-full px-6 py-8 text-black bg-white shadow-lg rounded-xl">

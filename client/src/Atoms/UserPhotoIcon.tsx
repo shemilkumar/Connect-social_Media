@@ -1,10 +1,12 @@
+import defaultProfile from "../../public/img/default.jpg";
+
 function UserPhotoIcon() {
   return (
-    <div className="h-10 w-10 rounded-full">
+    <div className="w-10 h-10 rounded-full">
       <img
-        src="../../public/img/default.jpg"
+        src={defaultProfile}
         alt="profile photo"
-        className="rounded-full object-cover"
+        className="object-cover rounded-full"
       />
     </div>
   );

@@ -4,8 +4,6 @@ import validator from "../../util/validator";
 import { useNavigate } from "react-router-dom";
 import { SIGNUP_URL } from "../../constants/urls";
 import usePost from "../../hooks/usePost";
-import { useDispatch } from "react-redux";
-import { setUserData } from "../../Redux/Slicers/userSlicer";
 import { DataFromAuthentication } from "../../interfaces/APIResultTypes";
 
 const SignUp = () => {
@@ -16,7 +14,6 @@ const SignUp = () => {
 
   const mutation = usePost(SIGNUP_URL);
   const navigate = useNavigate();
-  const dispatch = useDispatch();
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     switch (e.target.name) {
@@ -74,14 +71,13 @@ const SignUp = () => {
 
       if (data.status === "success") {
         navigate("/");
-        dispatch(setUserData({ name, email }));
         localStorage.setItem("token", data.token);
         localStorage.setItem("userID", data.user._id);
         localStorage.setItem("userName", data.user.name);
         clearInputs();
       }
-     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    } catch (error:any) {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    } catch (error: any) {
       if (error?.response) alert(error.response.data.message);
       else alert(error);
     }
