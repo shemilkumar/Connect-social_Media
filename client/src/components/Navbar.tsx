@@ -17,7 +17,7 @@ const Navbar = () => {
 
   return (
     <header className="flex items-center justify-between py-4 mb-6">
-      <Link to={`/`} className="text-4xl font-bold">
+      <Link to={`/`} className="text-4xl font-bold lg:text-3xl sm:text-2xl">
         <span className="text-blue-700">C</span>
         <span className="text-gray-800">o</span>
         <span className="text-blue-700">nnect</span>
@@ -25,12 +25,14 @@ const Navbar = () => {
 
       {user ? (
         <div className="flex items-center gap-4">
-          <nav className="text-lg font-semibold text-gray-600">{user}</nav>
+          <nav className="text-base font-semibold text-gray-600 md:text-sm">
+            {user.split(" ")[0]}
+          </nav>
           <Button
             children="Logout"
             type="button"
             handleOnClick={handleLogoutClick}
-            className="w-24 py-1.5"
+            className="w-24 px-6 !py-2 md:px-4 md:text-sm md:!py-1.5"
           />
         </div>
       ) : (
@@ -38,7 +40,7 @@ const Navbar = () => {
           children="Login"
           type="button"
           handleOnClick={handleLoginClick}
-          className="w-24 py-1.5"
+          className="w-24 px-6 !py-2"
         />
       )}
     </header>

@@ -2,7 +2,6 @@ import { FC } from "react";
 import Input from "../../Atoms/Input";
 import Button from "../../Atoms/Button";
 import Layout from "../../components/Layout";
-import TermsNConditions from "../../Atoms/TermsNConditions";
 import SignUpLoginNavigate from "../../Atoms/SignUpLoginNavigate";
 
 interface LoginDesignProps {

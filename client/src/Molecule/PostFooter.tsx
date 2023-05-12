@@ -56,7 +56,7 @@ const PostFooter: FC<PostFooterProps> = ({
 
   return (
     <div className="flex items-center justify-between">
-      <div className="flex items-center gap-2">
+      <div className="flex items-center gap-2 sm:text-sm">
         <div onClick={handleLike}>
           <LikeIcon className={isLiked ? "fill-blue-400" : "fill-none"} />
         </div>

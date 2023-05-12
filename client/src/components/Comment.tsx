@@ -11,14 +11,14 @@ const Comment: FC<CommentModel> = ({ comment, commentedAt, user }) => {
       <UserPhotoIcon />
       <div className="flex flex-col w-full gap-2 px-3 py-2 text-sm bg-gray-200 rounded-xl">
         <div className="flex justify-between">
-          <div className="mb-1 font-semibold">
+          <div className="mb-1 font-semibold sm:font-normal">
             {user.name ? user.name : currentUser}
           </div>
           <div className="text-xs text-gray-500">
             {dateConverter(commentedAt)}
           </div>
         </div>
-        <div className="text-gray-700">{comment}</div>
+        <div className="text-gray-700 sm:text-sm">{comment}</div>
       </div>
     </div>
   );

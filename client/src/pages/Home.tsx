@@ -1,8 +1,8 @@
 import Layout from "../components/Layout";
-import AllPosts from "../components/AllPosts";
 import Navbar from "../components/Navbar";
-import WritePost from "../components/WritePost";
 import Container from "../components/Container";
+import WritePost from "../components/WritePost";
+import AllPosts from "../components/AllPosts";
 
 const Home = () => {
   return (

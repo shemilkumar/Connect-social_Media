@@ -17,7 +17,7 @@ const CreatePostDesign: FC<CreatePostDesignProps> = ({
     <Layout>
       <Navbar />
       <div className="flex justify-center">
-        <div className="w-[50%]">
+        <div className="w-[50%] lg:w-[60%] md:w-[70%] sm:w-full">
           <TextArea
             name="postContent"
             rows={10}

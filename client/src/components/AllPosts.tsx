@@ -7,18 +7,21 @@ import { useNavigate } from "react-router-dom";
 import Spinner from "./Spinner";
 
 const AllPosts = () => {
+  const loggedIn = localStorage.getItem("token");
   const { data, error } = useFetch(FETCH_POST_URL);
   const [allPosts, setAllPosts] = useState<PostModel[]>();
   const navigate = useNavigate();
 
   useEffect(() => {
+    !loggedIn && navigate("/login");
+
     if (error) {
       alert(error);
       navigate("/login");
     }
 
     if (data?.doc.length > 0) setAllPosts(data.doc);
-  }, [data, error, navigate]);
+  }, [data, error, navigate, loggedIn]);
 
   return (
     <>

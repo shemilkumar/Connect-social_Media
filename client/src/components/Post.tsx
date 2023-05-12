@@ -34,7 +34,7 @@ const Post: FC<PostProps> = ({
   // Callback function to update comments array
   const handleCommentSubmit = (newComment: CommentModel) => {
     // console.log(newComment);
-    setPostComments([...postComments, newComment]);
+    setPostComments([...postComments, newComment].reverse());
   };
 
   const handleCommentOpening = () => {
@@ -43,14 +43,14 @@ const Post: FC<PostProps> = ({
 
   return (
     <section className="flex flex-col items-center justify-center py-2">
-      <div className="w-full min-h-[220px] flex flex-col justify-between gap-6 bg-slate-50 shadow-md px-6 py-8 rounded-lg">
+      <div className="w-full min-h-[220px] flex flex-col justify-between gap-6 bg-slate-50 shadow-md px-6 py-8 rounded-lg sm:text-sm">
         <Link to={`/posts/${id}`}>
           <PostHeader username={user.name} />
         </Link>{" "}
         <PostDescription description={description} />
         <PostFooter
           likes={likes}
-          comments={comments.length}
+          comments={postComments.length}
           id={id}
           likedBy={likedBy}
           handleCommentBox={handleCommentOpening}
