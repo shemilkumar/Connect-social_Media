@@ -4,6 +4,7 @@ import useFetch from "../hooks/useFetch";
 import { PostModel } from "../interfaces/modelTypes";
 import Post from "./Post";
 import { useNavigate } from "react-router-dom";
+import Spinner from "./Spinner";
 
 const AllPosts = () => {
   const { data, error } = useFetch(FETCH_POST_URL);
@@ -21,22 +22,24 @@ const AllPosts = () => {
 
   return (
     <>
-      {!allPosts
-        ? "Loading"
-        : allPosts.map((post: PostModel) => {
-            return (
-              <Post
-                key={post._id}
-                id={post._id}
-                description={post.description}
-                user={post.user}
-                likes={post.likes}
-                likedBy={post.likedBy}
-                comments={post.comments}
-                detailedPost={false}
-              />
-            );
-          })}
+      {!allPosts ? (
+        <Spinner />
+      ) : (
+        allPosts.map((post: PostModel) => {
+          return (
+            <Post
+              key={post._id}
+              id={post._id}
+              description={post.description}
+              user={post.user}
+              likes={post.likes}
+              likedBy={post.likedBy}
+              comments={post.comments}
+              detailedPost={false}
+            />
+          );
+        })
+      )}
     </>
   );
 };

@@ -5,6 +5,7 @@ import useFetch from "../../hooks/useFetch";
 import SinglePostDesign from "./SinglePostDesign";
 import { useNavigate, useParams } from "react-router-dom";
 import { PostModel } from "../../interfaces/modelTypes";
+import Spinner from "../../components/Spinner";
 
 const SinglePost = () => {
   const { id } = useParams();
@@ -22,7 +23,7 @@ const SinglePost = () => {
 
   // console.log(post?.user);
 
-  return <>{post?.user ? <SinglePostDesign post={post} /> : "Loading..."}</>;
+  return <>{post?.user ? <SinglePostDesign post={post} /> : <Spinner />}</>;
 };
 
 export default SinglePost;
