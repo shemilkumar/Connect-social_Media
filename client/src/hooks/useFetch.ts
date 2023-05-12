@@ -1,13 +1,14 @@
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 
-function useFetchAllPosts() {
+function useFetch(URL: string) {
   return useQuery({
     queryFn: async () => {
-      const { data } = await axios.get("http://127.0.0.1:5000/api/v1/posts/");
+      const { data } = await axios.get(URL);
       return data;
     },
   });
 }
 
-export default useFetchAllPosts;
+// export default useFetchAllPosts;
+export default useFetch;

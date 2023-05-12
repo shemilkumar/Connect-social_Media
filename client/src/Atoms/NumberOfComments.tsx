@@ -5,7 +5,9 @@ interface NumberOfCommentsProps {
 }
 
 const NumberOfComments: FC<NumberOfCommentsProps> = ({ comments }) => {
-  return <div>{`${comments} Comments`}</div>;
+  return (
+    <div className="hover:underline underline-offset-4">{`${comments} Comments`}</div>
+  );
 };
 
 export default NumberOfComments;
