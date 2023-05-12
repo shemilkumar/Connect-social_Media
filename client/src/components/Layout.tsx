@@ -7,7 +7,7 @@ interface LayoutProps {
 const Layout: FC<LayoutProps> = ({ children }) => {
   return (
     <main className="relative flex min-h-screen font-poppins justify-center bg-[#f2f6fb]">
-      <section className="flex flex-col min-h-screen w-[35%]">
+      <section className="flex flex-col min-h-screen w-[70%]">
         {children}
       </section>
     </main>

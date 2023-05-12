@@ -16,14 +16,16 @@ const CreatePostDesign: FC<CreatePostDesignProps> = ({
   return (
     <Layout>
       <Navbar />
-      <div>
-        <TextArea
-          name="postContent"
-          rows={10}
-          placeHolder="write a post..."
-          onChange={onChange}
-        />
-        <Button type="button" children="Post" handleOnClick={handleClick} />
+      <div className="flex justify-center">
+        <div className="w-[50%]">
+          <TextArea
+            name="postContent"
+            rows={10}
+            placeHolder="write a post..."
+            onChange={onChange}
+          />
+          <Button type="button" children="Post" handleOnClick={handleClick} />
+        </div>
       </div>
     </Layout>
   );

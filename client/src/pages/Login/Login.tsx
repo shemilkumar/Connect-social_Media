@@ -47,14 +47,15 @@ const Login = () => {
         password,
       })) as DataFromAuthentication;
 
-      console.log(data);
+      // console.log(data);
       if (data.status === "success") {
         navigate("/");
         localStorage.setItem("token", data.token);
         localStorage.setItem("userID", data.user._id);
+        localStorage.setItem("userName", data.user.name);
         dispatch(setUserData({ name: data.user.name, email: data.user.email }));
         clearInputs();
-      } 
+      }
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (error:any) {
       if (error?.response) alert(error.response.data.message);

@@ -13,7 +13,7 @@ interface CreateCommentProps {
 
 const CreateComment: FC<CreateCommentProps> = ({ toggleComment, onSubmit }) => {
   const postId = useParams().id;
-  // console.log(`${FETCH_POST_URL}${postId}/comment`);
+  // console.log(`${FETCH_POST_URL}${postId}/comments`);
 
   const mutation = useCreateNewComment(`${FETCH_POST_URL}${postId}/comments`);
   const [newComment, setNewComment] = useState<string>("");
@@ -29,7 +29,7 @@ const CreateComment: FC<CreateCommentProps> = ({ toggleComment, onSubmit }) => {
       const data = await mutation.mutateAsync({ comment: newComment });
       toggleComment();
       if (data.status === "success") {
-        console.log(data.doc);
+        // console.log(data.doc);
         onSubmit(data.doc);
         // window.location.reload();
       }

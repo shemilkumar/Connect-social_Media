@@ -5,9 +5,9 @@ interface InputProps {
   className?: string;
   name: string;
   placeHolder: string;
-  value: string | number;
+  value?: string | number;
 
-  onChange: React.ChangeEventHandler<HTMLInputElement>;
+  onChange?: React.ChangeEventHandler<HTMLInputElement>;
 }
 
 const Input: FC<InputProps> = ({

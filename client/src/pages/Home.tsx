@@ -1,13 +1,18 @@
 import Layout from "../components/Layout";
-import Navbar from "../components/Navbar";
 import AllPosts from "../components/AllPosts";
+import Navbar from "../components/Navbar";
+import WritePost from "../components/WritePost";
+import Container from "../components/Container";
 
 const Home = () => {
   return (
     <>
       <Layout>
         <Navbar />
-        <AllPosts />
+        <Container>
+          <WritePost />
+          <AllPosts />
+        </Container>
       </Layout>
     </>
   );

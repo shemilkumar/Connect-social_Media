@@ -36,6 +36,7 @@ const AllPosts = () => {
               likedBy={post.likedBy}
               comments={post.comments}
               detailedPost={false}
+              postedAt={post.postedAt}
             />
           );
         })

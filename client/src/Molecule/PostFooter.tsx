@@ -6,12 +6,14 @@ import NumberOfComments from "../Atoms/NumberOfComments";
 import { Link } from "react-router-dom";
 import { FETCH_POST_URL } from "../constants/urls";
 import useLike from "../hooks/useLike";
+import dateConverter from "../util/dateConverter";
 
 interface PostFooterProps {
   likes: number;
   comments: number;
   id: string;
   likedBy: [string];
+  postedAt: Date;
   handleCommentBox: () => void;
 }
 
@@ -20,6 +22,7 @@ const PostFooter: FC<PostFooterProps> = ({
   comments,
   id,
   likedBy,
+  postedAt,
   handleCommentBox,
 }) => {
   const [isLiked, setIsLiked] = useState(false);
@@ -52,19 +55,25 @@ const PostFooter: FC<PostFooterProps> = ({
   };
 
   return (
-    <div className="flex items-center gap-2">
-      <div onClick={handleLike}>
-        <LikeIcon className={isLiked ? "fill-blue-400" : "fill-none"} />
-      </div>
-      <Link to={`/posts/${id}`}>
-        <div onClick={handleCommentBox}>
-          <CommentIcon />
+    <div className="flex items-center justify-between">
+      <div className="flex items-center gap-2">
+        <div onClick={handleLike}>
+          <LikeIcon className={isLiked ? "fill-blue-400" : "fill-none"} />
         </div>
-      </Link>
-      <NumberOfLikes likes={likeCount} />
-      <Link to={`/posts/${id}`}>
-        <NumberOfComments comments={comments} />
-      </Link>
+        <Link to={`/posts/${id}`}>
+          <div onClick={handleCommentBox}>
+            <CommentIcon />
+          </div>
+        </Link>
+        <NumberOfLikes likes={likeCount} />
+        <Link to={`/posts/${id}`}>
+          <NumberOfComments comments={comments} />
+        </Link>
+      </div>
+
+      <div>
+        <span className="text-sm text-gray-500">{dateConverter(postedAt)}</span>
+      </div>
     </div>
   );
 };

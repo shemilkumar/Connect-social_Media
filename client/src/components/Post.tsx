@@ -15,6 +15,7 @@ interface PostProps {
   likedBy: [string];
   comments: CommentModel[];
   detailedPost: boolean;
+  postedAt: Date;
 }
 
 const Post: FC<PostProps> = ({
@@ -25,12 +26,14 @@ const Post: FC<PostProps> = ({
   comments,
   likedBy,
   detailedPost,
+  postedAt,
 }) => {
   const [isCommentClicked, setIsCommentClicked] = useState<boolean>(false);
   const [postComments, setPostComments] = useState<CommentModel[]>(comments);
 
   // Callback function to update comments array
   const handleCommentSubmit = (newComment: CommentModel) => {
+    // console.log(newComment);
     setPostComments([...postComments, newComment]);
   };
 
@@ -40,7 +43,7 @@ const Post: FC<PostProps> = ({
 
   return (
     <section className="flex flex-col items-center justify-center py-2">
-      <div className="w-[100%] flex flex-col gap-6 bg-slate-50 shadow-md px-6 py-8 rounded-lg">
+      <div className="w-full min-h-[220px] flex flex-col justify-between gap-6 bg-slate-50 shadow-md px-6 py-8 rounded-lg">
         <Link to={`/posts/${id}`}>
           <PostHeader username={user.name} />
         </Link>{" "}
@@ -51,6 +54,7 @@ const Post: FC<PostProps> = ({
           id={id}
           likedBy={likedBy}
           handleCommentBox={handleCommentOpening}
+          postedAt={postedAt}
         />
         {isCommentClicked && (
           <CreateComment

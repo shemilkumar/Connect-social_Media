@@ -77,6 +77,7 @@ const SignUp = () => {
         dispatch(setUserData({ name, email }));
         localStorage.setItem("token", data.token);
         localStorage.setItem("userID", data.user._id);
+        localStorage.setItem("userName", data.user.name);
         clearInputs();
       }
      // eslint-disable-next-line @typescript-eslint/no-explicit-any
