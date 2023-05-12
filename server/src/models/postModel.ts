@@ -18,7 +18,7 @@ const postSchema = new mongoose.Schema<PostModel>(
     },
     likes: {
       type: Number,
-      default: 1,
+      default: 0,
     },
     likedBy: [{ type: mongoose.Schema.Types.ObjectId, ref: "User" }],
     postedAt: {

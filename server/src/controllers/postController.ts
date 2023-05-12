@@ -35,6 +35,7 @@ export const likePost = catchAsync(
 
     res.status(200).json({
       status: "success",
+      doc: post,
     });
   }
 );

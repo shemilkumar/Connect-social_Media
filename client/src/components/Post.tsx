@@ -25,8 +25,6 @@ const Post: FC<PostProps> = ({
   likedBy,
   detailedPost,
 }) => {
-  console.log(likedBy);
-
   return (
     <section className="flex flex-col items-center justify-center py-2">
       <div className="w-[100%] flex flex-col gap-6 bg-slate-50 shadow-md px-6 py-8 rounded-lg">
