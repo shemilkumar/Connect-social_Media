@@ -1,10 +1,11 @@
 import PostDescription from "../Atoms/PostDescription";
 import PostFooter from "../Molecule/PostFooter";
 import PostHeader from "../Molecule/PostHeader";
-import { FC } from "react";
+import { FC, useState } from "react";
 import { CommentModel, UserType } from "../interfaces/modelTypes";
 import { Link } from "react-router-dom";
 import AllComments from "./AllComments";
+import CreateComment from "./NewComment/CreateComment";
 
 interface PostProps {
   id: string;
@@ -12,7 +13,7 @@ interface PostProps {
   user: UserType;
   likes: number;
   likedBy: [string];
-  comments: [CommentModel];
+  comments: CommentModel[];
   detailedPost: boolean;
 }
 
@@ -25,6 +26,18 @@ const Post: FC<PostProps> = ({
   likedBy,
   detailedPost,
 }) => {
+  const [isCommentClicked, setIsCommentClicked] = useState<boolean>(false);
+  const [postComments, setPostComments] = useState<CommentModel[]>(comments);
+
+  // Callback function to update comments array
+  const handleCommentSubmit = (newComment: CommentModel) => {
+    setPostComments([...postComments, newComment]);
+  };
+
+  const handleCommentOpening = () => {
+    setIsCommentClicked(!isCommentClicked);
+  };
+
   return (
     <section className="flex flex-col items-center justify-center py-2">
       <div className="w-[100%] flex flex-col gap-6 bg-slate-50 shadow-md px-6 py-8 rounded-lg">
@@ -37,8 +50,15 @@ const Post: FC<PostProps> = ({
           comments={comments.length}
           id={id}
           likedBy={likedBy}
+          handleCommentBox={handleCommentOpening}
         />
-        {detailedPost && <AllComments comments={comments} />}
+        {isCommentClicked && (
+          <CreateComment
+            toggleComment={handleCommentOpening}
+            onSubmit={handleCommentSubmit}
+          />
+        )}
+        {detailedPost && <AllComments comments={postComments} />}
       </div>
     </section>
   );

@@ -79,8 +79,10 @@ const SignUp = () => {
         localStorage.setItem("userID", data.user._id);
         clearInputs();
       }
-    } catch (error) {
-      alert(error);
+     // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    } catch (error:any) {
+      if (error?.response) alert(error.response.data.message);
+      else alert(error);
     }
   };
 

@@ -17,10 +17,15 @@ const CreatePost = () => {
 
   const handlePost = async (e: React.MouseEvent) => {
     e.preventDefault();
-    console.log(description);
-    const data = await mutation.mutateAsync({ description });
-    if (data.status === "success") navigate("/");
-    console.log(data);
+
+    try {
+      const data = await mutation.mutateAsync({ description });
+      if (data.status === "success") navigate("/");
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    } catch (error: any) {
+      if (error?.response) alert(error.response.data.message);
+      else alert(error);
+    }
   };
 
   return (

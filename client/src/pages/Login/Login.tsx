@@ -54,11 +54,11 @@ const Login = () => {
         localStorage.setItem("userID", data.user._id);
         dispatch(setUserData({ name: data.user.name, email: data.user.email }));
         clearInputs();
-      } else {
-        console.log("something");
-      }
-    } catch (error) {
-      alert(error);
+      } 
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    } catch (error:any) {
+      if (error?.response) alert(error.response.data.message);
+      else alert(error);
     }
   };
 

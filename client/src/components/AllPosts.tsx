@@ -3,14 +3,21 @@ import { FETCH_POST_URL } from "../constants/urls";
 import useFetch from "../hooks/useFetch";
 import { PostModel } from "../interfaces/modelTypes";
 import Post from "./Post";
+import { useNavigate } from "react-router-dom";
 
 const AllPosts = () => {
-  const { data } = useFetch(FETCH_POST_URL);
+  const { data, error } = useFetch(FETCH_POST_URL);
   const [allPosts, setAllPosts] = useState<PostModel[]>();
+  const navigate = useNavigate();
 
   useEffect(() => {
+    if (error) {
+      alert(error);
+      navigate("/login");
+    }
+
     if (data?.doc.length > 0) setAllPosts(data.doc);
-  }, [data]);
+  }, [data, error, navigate]);
 
   return (
     <>

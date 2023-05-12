@@ -1,7 +1,7 @@
 import { CommentModel } from "../interfaces/modelTypes";
 import Comment from "./Comment";
 
-const AllComments = ({ comments }: { comments: [CommentModel] }) => {
+const AllComments = ({ comments }: { comments: CommentModel[] }) => {
   return (
     <>
       {comments.length > 0 &&

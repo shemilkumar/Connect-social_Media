@@ -12,9 +12,16 @@ interface PostFooterProps {
   comments: number;
   id: string;
   likedBy: [string];
+  handleCommentBox: () => void;
 }
 
-const PostFooter: FC<PostFooterProps> = ({ likes, comments, id, likedBy }) => {
+const PostFooter: FC<PostFooterProps> = ({
+  likes,
+  comments,
+  id,
+  likedBy,
+  handleCommentBox,
+}) => {
   const [isLiked, setIsLiked] = useState(false);
   const [likeCount, setLikeCount] = useState(likes);
 
@@ -29,11 +36,18 @@ const PostFooter: FC<PostFooterProps> = ({ likes, comments, id, likedBy }) => {
 
   const handleLike = async (e: React.MouseEvent) => {
     e.preventDefault();
-    const data = await mutation.mutateAsync();
-    console.log(data);
-    if (data.status === "success") {
-      setIsLiked(!isLiked);
-      setLikeCount(isLiked ? likeCount - 1 : likeCount + 1);
+
+    try {
+      const data = await mutation.mutateAsync();
+      console.log(data);
+      if (data.status === "success") {
+        setIsLiked(!isLiked);
+        setLikeCount(isLiked ? likeCount - 1 : likeCount + 1);
+      }
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    } catch (error: any) {
+      if (error?.response) alert(error.response.data.message);
+      else alert(error);
     }
   };
 
@@ -43,7 +57,9 @@ const PostFooter: FC<PostFooterProps> = ({ likes, comments, id, likedBy }) => {
         <LikeIcon className={isLiked ? "fill-blue-400" : "fill-none"} />
       </div>
       <Link to={`/posts/${id}`}>
-        <CommentIcon />
+        <div onClick={handleCommentBox}>
+          <CommentIcon />
+        </div>
       </Link>
       <NumberOfLikes likes={likeCount} />
       <Link to={`/posts/${id}`}>
