@@ -6,7 +6,7 @@ interface LayoutProps {
 
 const Layout: FC<LayoutProps> = ({ children }) => {
   return (
-    <main className="flex min-h-screen font-poppins justify-center bg-[#f2f6fb]">
+    <main className="relative flex min-h-screen font-poppins justify-center bg-[#f2f6fb]">
       <section className="flex flex-col min-h-screen w-[35%]">
         {children}
       </section>
