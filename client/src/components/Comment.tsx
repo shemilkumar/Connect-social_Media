@@ -3,7 +3,6 @@ import UserPhotoIcon from "../Atoms/UserPhotoIcon";
 import { CommentModel } from "../interfaces/modelTypes";
 
 const Comment: FC<CommentModel> = ({ comment, commentedAt, user }) => {
-  console.log(commentedAt);
   return (
     <div className="flex w-full gap-4 px-4">
       <UserPhotoIcon />

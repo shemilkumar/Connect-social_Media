@@ -6,6 +6,7 @@ import { SIGNUP_URL } from "../../constants/urls";
 import usePost from "../../hooks/usePost";
 import { useDispatch } from "react-redux";
 import { setUserData } from "../../Redux/Slicers/userSlicer";
+import { DataFromAuthentication } from "../../interfaces/APIResultTypes";
 
 const SignUp = () => {
   const [name, setName] = useState<string>("");
@@ -64,16 +65,18 @@ const SignUp = () => {
 
     // console.log("SignUp Success");
     try {
-      const data = await mutation.mutateAsync({
+      const data = (await mutation.mutateAsync({
         name,
         email,
         password,
         passwordConfirm,
-      });
+      })) as DataFromAuthentication;
 
       if (data.status === "success") {
         navigate("/");
         dispatch(setUserData({ name, email }));
+        localStorage.setItem("token", data.token);
+        localStorage.setItem("userID", data.user._id);
         clearInputs();
       }
     } catch (error) {

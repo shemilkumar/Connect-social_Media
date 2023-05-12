@@ -10,6 +10,7 @@ export interface PostModel {
   user: UserType;
   description: string;
   likes: number;
+  likedBy: [string];
   photo?: string;
   postedAt: Date;
   comments: [CommentModel];

@@ -50,6 +50,8 @@ const Login = () => {
       console.log(data);
       if (data.status === "success") {
         navigate("/");
+        localStorage.setItem("token", data.token);
+        localStorage.setItem("userID", data.user._id);
         dispatch(setUserData({ name: data.user.name, email: data.user.email }));
         clearInputs();
       } else {

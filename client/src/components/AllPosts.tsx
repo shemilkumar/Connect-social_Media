@@ -24,7 +24,9 @@ const AllPosts = () => {
                 description={post.description}
                 user={post.user}
                 likes={post.likes}
+                likedBy={post.likedBy}
                 comments={post.comments}
+                detailedPost={false}
               />
             );
           })}
